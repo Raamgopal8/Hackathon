@@ -2,9 +2,9 @@ import React from "react";
 import { Mail, Phone } from "lucide-react";
 
 const events = [
-  { name: "Paper Presentaion" },
-  { name: "Workshop" },
-  { name: "Non-technical Events" },
+  { name: "Paper Presentation" },
+  { name: "Technical Workshop" },
+  { name: "Non-Technical Events" },
 //   { name: "DevForge Internal" },
 //   { name: "Mosaic Internal" },
 //   { name: "BizPulse Internal" },
@@ -12,17 +12,17 @@ const events = [
 
 const contacts = [
   {
-    initials: "AS",
-    name: "Avinarasi S",
-    role: "CHAIR",
-    email: "22cs02@kpriet.ac.in",
+    initials: "V",
+    name: "Gopinath",
+    role: "Event Faculty Coordinator",
+    email: "mrvgopinath@ksrce.ac.in",
     phone: "+91 9385405744",
   },
   {
-    initials: "KB",
-    name: "Kanimozhi BV",
-    role: "VICE CHAIR",
-    email: "22cs059@kpriet.ac.in",
+    initials: "S",
+    name: "Harish Rahul",
+    role: "Student Event Coordinator",
+    email: "harishrahul@ksriet.ac.in",
     phone: "+91 9384945040",
   },
 ];
@@ -32,9 +32,10 @@ const LandingPage = () => {
   <div className="bg-black text-white min-h-screen pt-25 font-sans">
       {/* Hero Section */}
       <section className="text-center py-20">
-        <h1 className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-violet-400 to-blue-300 drop-shadow-lg">DevSpark’25</h1>
-  <p className="mt-4 text-lg text-blue-100 max-w-2xl mx-auto leading-relaxed">
-          DevSpark’25 is a national-level tech event jointly hosted by KSRIET and KSRCE, featuring events like paper presentation, workshops, and exciting non-technical events.
+        <h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-violet-400 to-blue-300 drop-shadow-lg mb-6">KSRCE & KSRIET Proudly Present's</h2>
+        <h1 className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-violet-400 to-blue-300 drop-shadow-lg">DevSpark’2k25</h1>
+  <p className="mt-4 text-2xl text-blue-100 max-w-2xl mx-auto leading-relaxed">
+          Department of Computer Science and Engineering,KSRIET & KSRCE are proud to present DevSpark’2k25, a national-level tech event jointly organised and hosted by KSRIET and KSRCE, featuring events like paper presentation, workshops, and exciting non-technical events.
         </p>
         <div className="mt-8 space-y-4 flex flex-col items-center">
           {events.map((event, index) => (

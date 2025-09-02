@@ -6,16 +6,20 @@ const Navbar = () => {
       {/* Logo Section */}
       <div className="flex items-center space-x-2">
         {/* Replace this with your actual logo image */}
-         <img
-          src="/KSRIET1.png"
-          alt="Logo"
-          className="h-15 w-20 object-contain"
-        />
-        <img
-          src="/KSRCE.webp"
-          alt="Logo"
-          className="h-20 w-20 object-contain"
-        />
+        <a href="https://ksrce.ac.in/" target="_blank" rel="noopener noreferrer">
+          <img
+            src="/KSRIET1.png"
+            alt="Logo"
+            className="h-25 w-25 object-contain"
+          />
+        </a>
+        <a href="https://ksrce.ac.in/" target="_blank" rel="noopener noreferrer">
+          <img
+            src="/KSRCE.webp"
+            alt="Logo"
+            className="h-30 w-30 object-contain"
+          />
+        </a>
        
         {/* <span className="text-xl font-bold text-orange-500">DevSpark</span> */}
       </div>
