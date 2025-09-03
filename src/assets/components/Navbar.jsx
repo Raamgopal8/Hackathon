@@ -42,19 +42,19 @@ const Navbar = () => {
 
       {/* Register Button for desktop */}
       <a
-        href="#register"
+        href="https://docs.google.com/forms/d/e/1FAIpQLSfRc6SZEt8dJol300_Nh45X4XtxA6EcqS97uW258pUKBe5R1w/formResponse"
         className="hidden sm:inline-block ml-4 bg-gradient-to-br from-purple-800 to-indigo-800 text-white font-bold py-2 px-4 rounded-md shadow-md hover:scale-105 transition text-sm sm:text-base"
       >
-        Register Now
+        Grab Your Spot Now !!!
       </a>
 
       {/* Register Button for mobile */}
       <a
-        href="#register"
+        href="https://docs.google.com/forms/d/e/1FAIpQLSfRc6SZEt8dJol300_Nh45X4XtxA6EcqS97uW258pUKBe5R1w/formResponse"
         className="inline-block sm:hidden ml-2 bg-gradient-to-r from-blue-500 via-violet-500 to-blue-400 text-white font-bold py-1.5 px-3 rounded-md shadow-md hover:scale-105 transition text-xs"
         style={{ fontSize: '0.95rem' }}
       >
-        Register
+        Grab Your Spot Now !!!
       </a>
     </nav>
   );

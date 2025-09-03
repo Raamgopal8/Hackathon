@@ -1,5 +1,6 @@
-import React, { useRef } from "react";
-import { Mail, Phone, Calendar } from "lucide-react";
+import React, { useRef, useEffect } from "react";
+import { Mail, Phone } from "lucide-react";
+import '../../App.css';
 
 const LandingPage = () => {
   // Refs for smooth scroll
@@ -7,27 +8,46 @@ const LandingPage = () => {
   const workshopRef = useRef(null);
   const techRef = useRef(null);
   const nonTechRef = useRef(null);
+  const eventUpdateRef = useRef(null); 
+
+  useEffect(() => {
+    const el = eventUpdateRef.current;
+    const observer = new window.IntersectionObserver(
+      ([entry]) => {
+        if(entry.isIntersecting){
+          el.classList.add("visible");
+        }
+      },
+      {threshold: 0.1}
+    );
+    if(el) observer.observe(el);
+    return () => {
+      if(el) observer.unobserve(el);
+    };
+  }, []);
 
   const scrollTo = (ref) => {
     ref.current?.scrollIntoView({ behavior: "smooth" });
   };
+
 const contacts = [
   {
     initials: "V",
     name: "Gopinath",
-    role: "Event Faculty Coordinator",
+    role: "Faculty Coordinator",
     email: "mrvgopinath@ksrce.ac.in",
-    phone: "+91 9385405744",
+    phone: "+91 9842680244",
   },
   {
     initials: "S",
     name: "Harish Rahul",
-    role: "Student Event Coordinator",
+    role: "Student Coordinator",
     email: "harishrahul@ksriet.ac.in",
-    phone: "+91 9384945040",
+    phone: "+91 9360218934",
   },
 ];
-  return (
+
+return (
   <div id="home-section" className="bg-gradient-to-br from-indigo-950 via-black to-purple-900 pt-30 text-white min-h-screen font-sans">
       {/* Hero Section */}
       <section className="text-center py-8 md:mt-10">
@@ -42,6 +62,7 @@ const contacts = [
 
       {/* Option Cards */}
       <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 max-w-6xl mx-auto px-4 py-10">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfRc6SZEt8dJol300_Nh45X4XtxA6EcqS97uW258pUKBe5R1w/formResponse" target="_blank" rel="noreferrer"> 
         <div
           onClick={() => scrollTo(paperRef)}
           className="cursor-pointer bg-gradient-to-br from-teal-700 to-indigo-700 p-6 rounded-xl shadow-lg hover:scale-105 transition border border-teal-400/30 hover:border-teal-300/60"
@@ -49,7 +70,9 @@ const contacts = [
           <h3 className="text-xl font-bold text-teal-200 mb-2">Paper Presentation</h3>
           <p className="text-indigo-100 text-sm">Emerging Technologies & Trends in Design</p>
         </div>
+        </a>
 
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSemLPmyVuwspL8kLl5j7jT6OTSr1ckkRjRI7PfGVD11hTaCuA/viewform" target="_blank" rel="noreferrer">
         <div
           onClick={() => scrollTo(workshopRef)}
           className="cursor-pointer bg-gradient-to-br from-indigo-700 to-purple-700 p-6 rounded-xl shadow-lg hover:scale-105 transition border border-indigo-400/30 hover:border-indigo-300/60"
@@ -57,7 +80,9 @@ const contacts = [
           <h3 className="text-xl font-bold text-indigo-200 mb-2">Workshop</h3>
           <p className="text-purple-100 text-sm">Code Smarter with GitHub Copilot</p>
         </div>
+        </a>
 
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfRc6SZEt8dJol300_Nh45X4XtxA6EcqS97uW258pUKBe5R1w/formResponse">
         <div
           onClick={() => scrollTo(techRef)}
           className="cursor-pointer bg-gradient-to-br from-teal-800 to-indigo-800 p-6 rounded-xl shadow-lg hover:scale-105 transition border border-teal-400/30 hover:border-teal-300/60"
@@ -65,7 +90,9 @@ const contacts = [
           <h3 className="text-xl font-bold text-teal-200 mb-2">Technical Events</h3>
           <p className="text-indigo-100 text-sm">Reverse Coding, Bug Busters, Poster Making</p>
         </div>
+        </a>
 
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfRc6SZEt8dJol300_Nh45X4XtxA6EcqS97uW258pUKBe5R1w/formResponse">
         <div
           onClick={() => scrollTo(nonTechRef)}
           className="cursor-pointer bg-gradient-to-br from-purple-800 to-indigo-800 p-6 rounded-xl shadow-lg hover:scale-105 transition border border-purple-400/30 hover:border-purple-300/60"
@@ -73,15 +100,42 @@ const contacts = [
           <h3 className="text-xl font-bold text-purple-200 mb-2">Non-Technical Events</h3>
           <p className="text-indigo-100 text-sm">Mini Auction, Connections, Photography</p>
         </div>
+        </a>
       </section>
 
-            <section className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-6xl mx-auto md:mt-20 px-6 py-16">
-        {/* About Sporix */}
+  {/* EventUpdates */}
+      
+<section ref={eventUpdateRef} className="flex justify-center items-center max-w-6xl mt-20 px-6 py-16 slide-in-left">
+  <div className="flex flex-col gap-4 w-full max-w-xl mx-auto">
+    <h2 className="text-3xl font-bold text-teal-200 mb-4 text-center"> Symposium Updates </h2>
+    <table className="table-auto mx-auto w-full">
+      <tbody className="text-indigo-200 font-bold text-lg">
+        <tr>
+          <td className="py-2 pr-6 text-left text-green-500">Register Closing Deadline</td>
+          <td className="py-2 pl-6 text-left text-green-500">4th OCT 2025 (Ongoing)</td>
+        </tr>
+        <tr>
+          <td className="py-2 pr-6 text-left text-green-500">Paper Submission Deadline</td>
+          <td className="py-2 pl-6 text-left text-green-500">5th OCT 2025 (Ongoing)</td>
+        </tr>
+        <tr>
+          <td className="py-2 pr-6 text-left text-green-500">Shortlist Announcement Date</td>
+          <td className="py-2 pl-6 text-left text-green-500">6th OCT 2025 (Ongoing)</td>
+        </tr>
+      </tbody>
+    </table>
+    <p className="text-indigo-100 text-[18px] md:text-xl md:leading-loose text-center">
+      Stay updated with the latest events and activities at Sporix. <br /> Visit us for more information and updates.
+    </p>
+  </div>
+</section>
+      {/* About Sporix */}
+      <section className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-6xl mx-auto md:mt-20 px-6 py-16">
         <div>
           <h2 className="text-3xl font-bold text-teal-200 mb-4">ABOUT SPORIX</h2>
           <p className="text-indigo-100 text-[18px] md:text-xl md:leading-loose">
             Sporix is a national-level spring fest jointly hosted by the Department of 
-            Computer Science and Engineering (KSRIET & KSRCE). It features a wide range of 
+            Computer Science and Engineering KSRIET & Department of Computer Science and Design KSRCE. It features a wide range of 
             events including paper presentations, technical workshops, and fun-filled non-technical 
             activities. 
             <br /><br />
@@ -112,8 +166,9 @@ const contacts = [
           </ul>
         </div>
       </section>
+
        {/* Contact Team Section */}
-  <section id="contact-section" className="py-16 text-center rounded-xl shadow-lg mx-2 sm:mx-8 mt-8 ">
+      <section id="contact-section" className="py-16 text-center rounded-xl shadow-lg mx-2 sm:mx-8 mt-8 ">
         <h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-teal-300 via-indigo-300 to-purple-300 drop-shadow-lg mb-6">CONTACT TEAM</h2>
         <p className="text-indigo-200 mb-12 px-1">
           Ready to revolutionize the future? Connect with our coordinators who are here to guide your journey.
