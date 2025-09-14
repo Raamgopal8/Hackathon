@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { Mail, Phone } from "lucide-react";
 import '../../App.css';
 
@@ -8,26 +8,72 @@ const LandingPage = () => {
   const workshopRef = useRef(null);
   const techRef = useRef(null);
   const nonTechRef = useRef(null);
-  const eventUpdateRef = useRef(null); 
+  const eventUpdateRef = useRef(null);
 
+  const [visibleSection, setVisibleSection] = useState(null);
+    
   useEffect(() => {
     const el = eventUpdateRef.current;
-    const observer = new window.IntersectionObserver(
+    const observer = new IntersectionObserver(
       ([entry]) => {
-        if(entry.isIntersecting){
+        if (entry.isIntersecting) {
           el.classList.add("visible");
         }
       },
-      {threshold: 0.1}
+      { threshold: 0.1 }
     );
-    if(el) observer.observe(el);
+    if (el) observer.observe(el);
     return () => {
-      if(el) observer.unobserve(el);
+      if (el) observer.unobserve(el);
     };
   }, []);
 
   const scrollTo = (ref) => {
     ref.current?.scrollIntoView({ behavior: "smooth" });
+  };
+ 
+  const handleClick = (section) => {
+    setVisibleSection(visibleSection === section ? null : section);
+    
+    let ref = null;
+    switch (section) {
+      case 'paper':
+        ref = paperRef;
+        break;
+      case 'workshop':
+        ref = workshopRef;
+        break;
+      case 'tech':
+        ref = techRef;
+        break;
+      case 'nontech':
+        ref = nonTechRef;
+        break;
+      default:
+        return;
+    }
+
+    ref.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const eventList = {
+    paper: [
+      'EMERGING TECHNOLOGIES AND TRENDS IN DESIGN',
+      'SUBMIT YOUR TOP PAPERS TO THIS EMAIL-ID : sporixassociation@gmail.com',
+    ],
+    workshop: [
+      'Code Smarter with GitHub Copilot: The AI-Powered Developer Workshop'
+    ],
+    tech: [
+      'Reverse Coding',
+      'Bug Busters Hunt',
+      'Ideate (Poster Maker)',
+    ],
+    nontech: [
+      'Mini Auction',
+      'Connections',
+      'Photography Contest',
+    ]
   };
 
 const contacts = [
@@ -35,15 +81,22 @@ const contacts = [
     initials: "V",
     name: "Gopinath",
     role: "Faculty Coordinator",
-    email: "mrvgopinath@ksrce.ac.in",
+    email: "gopicse24@gmail.com",
     phone: "+91 9842680244",
   },
   {
     initials: "S",
     name: "Harish Rahul",
     role: "Student Coordinator",
-    email: "harishrahul@ksriet.ac.in",
+    email: "harishragulk@gmail.com",
     phone: "+91 9360218934",
+  },
+  {
+    initials: "E R",
+    name: "Harish",
+    role: "Student Coordinator",
+    email:"@#",
+    phone: "+91 8825746520",
   },
 ];
 
@@ -51,8 +104,10 @@ return (
   <div id="home-section" className="bg-gradient-to-br from-indigo-950 via-black to-purple-900 pt-30 text-white min-h-screen font-sans">
       {/* Hero Section */}
       <section className="text-center py-8 md:mt-10">
-        <h2 className="text-[16px] sm:text-1xl text-teal-300 mb-2 tracking-wide font-semibold drop-shadow">Department of CSE & CSD, KSRIET & KSRCE</h2>
-        <h1 className="text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-indigo-400 to-purple-500 animate-gradient-text drop-shadow-2xl mb-4">
+        <h2 className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-indigo-400 to-purple-500 animate-gradient-text drop-shadow-3xl mb-7">
+          KSR Institute for Engineering and Technology & KSR College Of Engineering</h2>
+        <h2 className="text-[16px] sm:text-1xl text-teal-300 mb-3 tracking-wide font-semibold drop-shadow">Department of CSE & CSD, KSRIET & KSRCE</h2>
+        <h1 className="text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-indigo-400 to-purple-500 animate-gradient-text drop-shadow-2xl mb-6">
           SPRING FEST 2K25
         </h1>
         <p className="mt-4 text-lg sm:text-[18px] text-indigo-100 max-w-2xl mx-auto leading-relaxed px-2">
@@ -61,51 +116,80 @@ return (
       </section>
 
       {/* Option Cards */}
+
+
       <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 max-w-6xl mx-auto px-4 py-10">
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfRc6SZEt8dJol300_Nh45X4XtxA6EcqS97uW258pUKBe5R1w/formResponse" target="_blank" rel="noreferrer"> 
-        <div
-          onClick={() => scrollTo(paperRef)}
+              <div
+        onClick={() => handleClick('paper')}
           className="cursor-pointer bg-gradient-to-br from-teal-700 to-indigo-700 p-6 rounded-xl shadow-lg hover:scale-105 transition border border-teal-400/30 hover:border-teal-300/60"
         >
-          <h3 className="text-xl font-bold text-teal-200 mb-2">Paper Presentation</h3>
-          <p className="text-indigo-100 text-sm">Emerging Technologies & Trends in Design</p>
+          <h3 className="text-xl font-bold text-teal-200 mb-2">Paper Presentation & Email ID</h3>
+          
         </div>
-        </a>
-
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSemLPmyVuwspL8kLl5j7jT6OTSr1ckkRjRI7PfGVD11hTaCuA/viewform" target="_blank" rel="noreferrer">
+        {visibleSection === 'paper' && (
+          <div ref={paperRef} className="col-span-full mt-4 text-sm text-indigo-100 px-4">
+            <ul className="list-disc list-inside space-y-1">
+              {eventList.paper.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+          {/* Workshop */}
         <div
-          onClick={() => scrollTo(workshopRef)}
+          onClick={() => handleClick('workshop')}
           className="cursor-pointer bg-gradient-to-br from-indigo-700 to-purple-700 p-6 rounded-xl shadow-lg hover:scale-105 transition border border-indigo-400/30 hover:border-indigo-300/60"
         >
           <h3 className="text-xl font-bold text-indigo-200 mb-2">Workshop</h3>
-          <p className="text-purple-100 text-sm">Code Smarter with GitHub Copilot</p>
         </div>
-        </a>
+        {visibleSection === 'workshop' && (
+          <div ref={workshopRef} className="col-span-full mt-4 text-sm text-indigo-100 px-4">
+            <ul className="list-disc list-inside space-y-1">
+              {eventList.workshop.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+          </div>
+        )}
 
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfRc6SZEt8dJol300_Nh45X4XtxA6EcqS97uW258pUKBe5R1w/formResponse">
+        {/* Technical Events */}
         <div
-          onClick={() => scrollTo(techRef)}
+          onClick={() => handleClick('tech')}
           className="cursor-pointer bg-gradient-to-br from-teal-800 to-indigo-800 p-6 rounded-xl shadow-lg hover:scale-105 transition border border-teal-400/30 hover:border-teal-300/60"
         >
           <h3 className="text-xl font-bold text-teal-200 mb-2">Technical Events</h3>
-          <p className="text-indigo-100 text-sm">Reverse Coding, Bug Busters, Poster Making</p>
         </div>
-        </a>
+        {visibleSection === 'tech' && (
+          <div ref={techRef} className="col-span-full mt-4 text-sm text-indigo-100 px-4">
+            <ul className="list-disc list-inside space-y-1">
+              {eventList.tech.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+          </div>
+        )}
 
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfRc6SZEt8dJol300_Nh45X4XtxA6EcqS97uW258pUKBe5R1w/formResponse">
+        {/* Non-Technical Events */}
         <div
-          onClick={() => scrollTo(nonTechRef)}
+          onClick={() => handleClick('nontech')}
           className="cursor-pointer bg-gradient-to-br from-purple-800 to-indigo-800 p-6 rounded-xl shadow-lg hover:scale-105 transition border border-purple-400/30 hover:border-purple-300/60"
         >
           <h3 className="text-xl font-bold text-purple-200 mb-2">Non-Technical Events</h3>
-          <p className="text-indigo-100 text-sm">Mini Auction, Connections, Photography</p>
         </div>
-        </a>
+        {visibleSection === 'nontech' && (
+          <div ref={nonTechRef} className="col-span-full mt-4 text-sm text-indigo-100 px-4">
+            <ul className="list-disc list-inside space-y-1">
+              {eventList.nontech.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+          </div>
+        )}
       </section>
 
   {/* EventUpdates */}
       
-<section ref={eventUpdateRef} className="flex justify-center items-center max-w-6xl mt-20 px-6 py-16 slide-in-left">
+<section ref={eventUpdateRef} className="flex justify-center items-center max-w-6xl mt-20 px-6 py-17 slide-in-left">
   <div className="flex flex-col gap-4 w-full max-w-xl mx-auto">
     <h2 className="text-3xl font-bold text-teal-200 mb-4 text-center"> Symposium Updates </h2>
     <table className="table-auto mx-auto w-full">
@@ -173,7 +257,7 @@ return (
         <p className="text-indigo-200 mb-12 px-1">
           Ready to revolutionize the future? Connect with our coordinators who are here to guide your journey.
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 max-w-4xl mx-auto px-2 sm:px-0">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 max-w-4xl mx-auto px-2 sm:px-0">
           {contacts.map((contact, index) => (
             <div
               key={index}
@@ -207,5 +291,6 @@ return (
     </div>
   );
 };
+
 
 export default LandingPage;
