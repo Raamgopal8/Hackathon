@@ -60,12 +60,15 @@ const Navbar = () => {
         <button onClick={() => handleNavClick('home-section')} className="hover:text-orange-400 transition bg-transparent border-none outline-none cursor-pointer p-0 m-0">
           Home
         </button>
+        <button onClick={() => handleNavClick('about-section')} className="hover:text-orange-400 transition bg-transparent border-none outline-none cursor-pointer p-0 m-0">
+          About
+        </button>
         <button onClick={() => handleNavClick('contact-section')} className="hover:text-orange-400 transition bg-transparent border-none outline-none cursor-pointer p-0 m-0">
           Contact
         </button>
       </div>
 
-      {/* Desktop Register Button with Dropdown */}
+      {/* Desktop Register Button with Dropdown
       <div className="hidden sm:inline-block ml-4 relative">
         <button
           onClick={toggleDropdown}
@@ -84,7 +87,7 @@ const Navbar = () => {
         </button>
         
         {/* Desktop Dropdown Menu */}
-        {isDropdownOpen && (
+        {/* {isDropdownOpen && (
           <div className="absolute right-0 mt-2 w-48 bg-white text-black rounded-md shadow-lg py-1 z-50">
             <a 
               href="https://docs.google.com/forms/d/e/1FAIpQLSemLPmyVuwspL8kLl5j7jT6OTSr1ckkRjRI7PfGVD11hTaCuA/viewform"
@@ -102,10 +105,10 @@ const Navbar = () => {
             </a>
           </div>
         )}
-      </div>
+      </div> */}
 
       {/* Mobile Register Button with Dropdown */}
-      <div className="inline-block sm:hidden ml-2 relative">
+      {/* <div className="inline-block sm:hidden ml-2 relative">
         <button
           onClick={toggleMobileDropdown}
           className="bg-gradient-to-r from-blue-500 via-violet-500 to-blue-400 text-white font-bold py-1.5 px-3 rounded-md shadow-md hover:scale-105 transition text-xs flex items-center"
@@ -121,10 +124,10 @@ const Navbar = () => {
           >
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
           </svg>
-        </button>
+        </button> */}
         
         {/* Mobile Dropdown Menu */}
-        {isMobileDropdownOpen && (
+        {/* {isMobileDropdownOpen && (
           <div className="absolute right-0 mt-2 w-40 bg-white text-black rounded-md shadow-lg py-1 z-50">
             <a 
               href="#workshop-section"
@@ -148,15 +151,15 @@ const Navbar = () => {
             </a>
           </div>
         )}
-      </div>
+      </div> */}
 
       {/* Click outside to close dropdowns */}
-      {(isDropdownOpen || isMobileDropdownOpen) && (
+      {/* {(isDropdownOpen || isMobileDropdownOpen) && (
         <div 
           className="fixed inset-0 z-40"
           onClick={closeAllDropdowns}
         />
-      )}
+      // )} */} 
     </nav>
   );
 };
